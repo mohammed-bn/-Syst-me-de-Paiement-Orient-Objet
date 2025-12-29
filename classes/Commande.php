@@ -35,7 +35,7 @@
 
         public function enregistre_comande() {
             $db = new Database();
-            $conn = $db->getConnection();
+            $conn = $db->get_connection();
             $stmt = $conn->prepare("INSERT INTO commandes (price, statu, date_commande, id_client)
             VALUES (?, ?, ?, ?)");
             $stmt->execute([$this->price, $this->statu, $this->date_commande, $this->id_client]);
@@ -44,7 +44,7 @@
 
         public static function get_all() {
             $db = new Database();
-            $conn = $db->getConnection();
+            $conn = $db->get_connection();
             $stmt = $conn->query("SELECT * FROM commandes");
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@
 
         public static function get_com_Pending() {
             $db = new Database();
-            $conn = $db->getConnection();
+            $conn = $db->get_connection();
             $stmt = $conn->query("SELECT * FROM commandes WHERE statu='pending'");
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@
 
         public static function adap_Statu($id, $statu) {
             $db = new Database();
-            $conn = $db->getConnection();
+            $conn = $db->get_connection();
             $stmt = $conn->prepare("UPDATE commandes SET statu=? WHERE id=?");
             $stmt->execute([$statu, $id]);
         }

@@ -21,11 +21,11 @@ abstract class Paiement {
 
     public function enregistre() {
         $db = new Database();
-        $conn = $db->getConnection();
+        $conn = $db->get_connection();
         $stmt = $conn->prepare("INSERT INTO payment (price, statu, date_operation, id_commande) 
         VALUES (?, ?, ?, ?)");
         $stmt->execute([$this->price, $this->statu, $this->date_operation, $this->id_commande]);
-        
+
         $this->id = $conn->lastInsertId();
     }
 }

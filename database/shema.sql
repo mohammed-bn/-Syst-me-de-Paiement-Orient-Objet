@@ -1,5 +1,5 @@
-CREATE DATABASE systeme_paiement;
-use  systeme_paiement;
+CREATE DATABASE systeme__paiement;
+use  systeme__paiement;
 CREATE TABLE users(
 	id int PRIMARY KEY AUTO_INCREMENT ,
 	name varchar(255) NOT NULL,
@@ -28,21 +28,21 @@ CREATE TABLE carte_bancair(
 	id int AUTO_INCREMENT PRIMARY KEY,
     numero_catre int NOT NULL,
     type_catre varchar(255),
-    id_client int,
-    FOREIGN KEY (id_client) REFERENCES users (id)
+    id_payment int,
+    FOREIGN KEY (id_payment) REFERENCES payment (id)
     
 );
 
 CREATE TABLE paypal (
 	name varchar(255) NOT NULL,
     email varchar (255) NOT NULL,
-    id_client int,
-    FOREIGN KEY (id_client) REFERENCES users(id)
+   id_payment int,
+    FOREIGN KEY (id_payment) REFERENCES payment (id)
 );
 
 CREATE TABLE vairment(
 	name varchar(255) NOT null,
     rib int NOT null,
-    id_client int,
-    FOREIGN KEY (id_client) REFERENCES users(id)
+    id_payment int,
+    FOREIGN KEY (id_payment) REFERENCES payment (id)
 );
